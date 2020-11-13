@@ -19,6 +19,7 @@ class m201110_232534_create_table_posts extends Migration
             'content' => $this->text()->notNull(),
             'image' => $this->string(255),
             'is_important' => $this->smallInteger(6)->defaultValue(9),
+            'type' => $this->smallInteger(6)->defaultValue(9),
             'category_id' => $this->integer(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),

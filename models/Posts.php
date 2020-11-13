@@ -16,6 +16,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $content
  * @property string|null $image
  * @property int|null $is_important
+ * @property int|null $type
  * @property int|null $category_id
  * @property int|null $created_at
  * @property int|null $updated_at
@@ -26,6 +27,8 @@ class Posts extends \yii\db\ActiveRecord
 {
     const IMPORTANT = 10;
     const NOT_IMPORTANT = 9;
+    const PAGE = 9;
+    const ARTICLE = 10;
 
     public function behaviors()
     {
@@ -54,9 +57,9 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug', 'content'], 'required'],
+            [['title', 'slug', 'content', 'type'], 'required'],
             [['content'], 'string'],
-            [['is_important', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['is_important', 'type', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['title', 'slug'], 'string', 'max' => 100],
             [['image'], 'string', 'max' => 255],
         ];
@@ -74,6 +77,7 @@ class Posts extends \yii\db\ActiveRecord
             'content' => 'Content',
             'image' => 'Image',
             'is_important' => 'Is Important',
+            'type' => 'Type',
             'category_id' => 'Category ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

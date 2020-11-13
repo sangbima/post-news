@@ -125,4 +125,34 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Displays product page.
+     *
+     * @return string
+     */
+    public function actionProducts()
+    {
+        return $this->render('products');
+    }
+
+    /**
+     * Displays partners page.
+     *
+     * @return string
+     */
+    public function actionPartners()
+    {
+        return $this->render('partners');
+    }
+
+    /**
+     * Displays features page.
+     *
+     * @return string
+     */
+    public function actionFeatures()
+    {
+        return $this->render('features');
+    }
 }

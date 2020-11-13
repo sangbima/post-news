@@ -1,35 +1,306 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Poppins:wght@400;500&display=swap');
+
 body {
-    height: 100%;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 40px;
+    text-align: justify;
+    font-size: 16px;
+    color: #4F4F4F;
 }
 
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+p {
+    font-size: .75em;
+    line-height: 27px;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+.mt {
+    margin-top: 2.375em;
 }
 
-.footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+.mb {
+    margin-bottom: 2.375em;
 }
 
-.jumbotron {
+.heading-h4 {
+    margin-bottom: 0px;
+}
+
+.heading-front {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 90px;
     text-align: center;
-    background-color: transparent;
+    color: #333333;
+    margin-bottom: 30px;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+.capitalize {
+    text-transform: uppercase;
 }
+
+.navbar-header .navbar-brand {
+    font-family: "Do Hyeon" !important;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0.2em;
+    text-align: left;
+    color: #ffffff;
+}
+
+.navbar-weco {
+    height: 75px;
+    left: 0px;
+    top: 0px;
+    background: #2980B9;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 0px;
+    margin-bottom: 0;
+}
+
+.navbar-nav {
+    margin-top: 10px;
+}
+
+.navbar-nav > li {
+    line-height: 45px;
+}
+
+.navbar-nav > li > a {
+    color: #ffffff !important;
+    position: relative;
+}
+
+.navbar-nav > li.active:after {
+    content: "";
+    background: #fff;
+    display: block;
+    height: 2px;
+    width: 90%;
+    left: 5%;
+}
+
+.navbar-nav > li:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+    background: none;
+    border: 1px solid transparent;
+}
+.navbar-nav > li:hover:after {
+    width: 90%; 
+    left: 5%;
+}
+
+.navbar-nav > li:nth-last-child(1):hover:after {
+    width: 0; 
+    left: 0;
+}
+
+.btn-login {
+    font-size: inherit;
+    background: #3498DB;
+    border-radius: 5px;
+}
+
+.btn-login:hover {
+    border: 1px solid transparent;
+}
+
+#slide-wrap {
+    background-color: #3498DB;
+    color: #ffffff;
+    /* height: 603px; */
+}
+
+.sliders {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.sliders .content {
+    padding: 20px;
+}
+
+.content-left {
+    grid-column: col ;
+    grid-row: row 2 ;
+}
+
+.content-right {
+    grid-column: col 2 / span  3 ;
+    grid-row: row 2 ;
+}
+
+.carousel-control {
+    left: -110px;
+    font-size: 80px;
+    top: 210px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+}
+
+.carousel-control.right {
+    right: -110px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot-active, .dot:hover {
+    background-color: #ffffff;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.item-grid {
+    text-align: center;
+}
+
+.btn-paper {
+    color: #ffffff;
+    background-color: #9B59B6;
+    border-radius: 5px;
+    font-size: 0.8125em;
+    width: 192px;
+    line-height: 0.8125em;
+    padding: 10px;
+    font-style: normal;
+    transition: background-color .3s;
+}
+
+.btn-paper:hover {
+    color: #ffffff;
+    background-color: #ad7ec0;
+    text-decoration: none;
+}
+
+.color-orange {
+    background: linear-gradient(95.65deg, rgba(225, 130, 19, 0.98) 14.73%, rgba(253, 186, 109, 0.5488) 103.63%);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 20px;
+}
+
+#ico-stage {
+    font-size: 1.375em;
+}
+
+/* Clock countdown */
+#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+    font-size: 30px;
+    display: grid;
+    grid-template-columns: auto 10px auto 10px auto 10px auto;
+    /* grid-column-gap: 20px; */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* #clockdiv > div{
+	padding: 10px;
+	border-radius: 3px;
+	display: inline-block;
+} */
+
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
+
+img.partners {
+    padding: 30px;
+}
+
+p.social-icon i {
+    font-size: 1.875em;
+    margin-right: 40px;
+}
+
+footer .footer-logo {
+    font-family: 'Do Hyeon';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4em;
+    line-height: 80px;
+    color: #4f4f4f;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+footer ul, footer ol {
+    padding-left: 0px;
+}
+
+footer ul>li {
+    background-image: url('../images/bullet-icon.svg');
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    background-position: 0px 10px;
+}
+
+/* .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+} */
 
 .not-set {
     color: #c55;
@@ -88,28 +359,4 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
-}
-
-.nav > li > form > button.logout:focus {
-    outline: none;
 }
