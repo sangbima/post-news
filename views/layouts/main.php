@@ -3,15 +3,17 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\FontawesomeAsset;
 use rmrevin\yii\fontawesome\FAS;
 use yii\bootstrap\Carousel;
+use yii2mod\alert\Alert;
 
+FontawesomeAsset::register($this);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -31,6 +33,11 @@ AppAsset::register($this);
 <?=$this->render('_header.php')?>
 
 <main>
+    <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'options' => ['class' => 'breadcrumb container']
+        ]) ?>
+    <?= Alert::widget() ?>
     <?=$content?>
 </main>
 

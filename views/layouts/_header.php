@@ -18,6 +18,7 @@ use rmrevin\yii\fontawesome\FAS;
             ['label' => 'Products', 'url' => ['/site/products']],
             ['label' => 'Partners', 'url' => ['/site/partners']],
             ['label' => 'Features', 'url' => ['/site/features']],
+            ['label' => 'Post', 'url' => ['/post'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 [
                     'label' => 'Sign In ' . FAS::icon('arrow-right'),
@@ -29,8 +30,8 @@ use rmrevin\yii\fontawesome\FAS;
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
+                    'Logout (' . Yii::$app->user->identity->fullname . ')',
+                    ['class' => 'btn btn-link logout', 'id' => 'btn-logout']
                 )
                 . Html::endForm()
                 . '</li>'

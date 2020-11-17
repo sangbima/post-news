@@ -61,7 +61,7 @@ class Posts extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['is_important', 'type', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['title', 'slug'], 'string', 'max' => 100],
-            [['image'], 'string', 'max' => 255],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, svg'],
         ];
     }
 
@@ -78,12 +78,27 @@ class Posts extends \yii\db\ActiveRecord
             'image' => 'Image',
             'is_important' => 'Is Important',
             'type' => 'Type',
-            'category_id' => 'Category ID',
+            'category_id' => 'Category',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
         ];
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function getCategory()
+    {
+        return Yii::$app->datastatic->getCategory($this->category_id);
     }
 
     /**

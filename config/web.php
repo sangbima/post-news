@@ -13,6 +13,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'datastatic' => [
+            'class' => 'app\helpers\DataStaticHelper'
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'WcfzVD8n04fZhklI3aIy9w==',

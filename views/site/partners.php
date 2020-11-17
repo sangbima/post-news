@@ -7,7 +7,7 @@ use yii\helpers\Html;
 $this->title = 'Partners';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
+<div class="site-partners container min-height">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>

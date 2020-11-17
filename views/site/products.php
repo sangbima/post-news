@@ -7,7 +7,7 @@ use yii\helpers\Html;
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-product">
+<div class="site-product container min-height">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>

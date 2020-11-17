@@ -8,6 +8,8 @@ use app\models\search\SearchPosts;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use yii\helpers\FileHelper;
 
 /**
  * PostController implements the CRUD actions for Posts model.
@@ -66,7 +68,29 @@ class PostController extends Controller
     {
         $model = new Posts();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+
+            if ($model->validate()) {
+                if(!is_null($model->image)) {
+                    $fileName = time() . preg_replace("/[\W_]+/u", '', strtolower($model->image->baseName)) . '.' . $model->image->extension;
+                    $dir = Yii::getAlias('@app/uploads/articles/');
+    
+                    if(!is_dir(dirname($dir . '.gitignore'))) {
+                        FileHelper::createDirectory(dirname($dir . '.gitignore'));
+                    }
+        
+                    $fileSaveTo = $dir . $fileName;
+                    $model->image->saveAs($fileSaveTo);
+                    $model->image = $fileName;
+                }
+    
+                $model->save(false);
+
+                Yii::$app->session->setFlash('success', 'Post created');
+            }
+            
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -85,8 +109,32 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $file = $model->image;
+        if ($model->load(Yii::$app->request->post())) {
+            $image = UploadedFile::getInstance($model, 'image');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate()) {
+                if(!is_null($image)) {
+                    $fileName = time() . preg_replace("/[\W_]+/u", '', strtolower($image->baseName)) . '.' . $image->extension;
+                    $dir = Yii::getAlias('@app/uploads/articles/');
+                    
+                    FileHelper::unlink($dir . '/' . $file);
+                    
+                    if(!is_dir(dirname($dir . '.gitignore'))) {
+                        FileHelper::createDirectory(dirname($dir . '.gitignore'));
+                    }
+        
+                    $fileSaveTo = $dir . $fileName;
+                    $image->saveAs($fileSaveTo);
+                    $model->image = $fileName;
+                } else {
+                    $model->image = (string) $model->getOldAttribute('image');
+                }
+
+                $model->save();
+                Yii::$app->session->setFlash('success', 'Post updated');
+            } 
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

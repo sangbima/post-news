@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="posts-view">
+<div class="posts-view container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -32,14 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'slug',
-            'content:ntext',
+            'content:raw',
             'image',
             'is_important',
-            'category_id',
-            'created_at',
-            'updated_at',
-            'created_by',
-            'updated_by',
+            [
+                'attribute' => 'category_id',
+                'value' => $model->category
+            ],
+            'created_at:datetime',
+            'updated_at:datetime',
+            'createdBy.fullname',
+            'updatedBy.fullname',
         ],
     ]) ?>
 

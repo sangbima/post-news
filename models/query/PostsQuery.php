@@ -31,4 +31,9 @@ class PostsQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function important()
+    {
+        return $this->andWhere(['is_important' => 10]);
+    }
 }

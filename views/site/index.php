@@ -10,42 +10,33 @@ $this->title = 'Home';
 <div class="site-index">
     <section id="slide-wrap">
         <div class="container">
-            <?php 
+            <?php
                 echo Carousel::widget([
-                    'items' => [
-                        // the item contains only the image
-                        '<div class="sliders"><div class="content content-left">
-                            <h1>E-CryptoLAB</h1>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, alias exercitationem doloremque dolor beatae nemo itaque quaerat architecto repudiandae ipsam quidem, sint earum corporis animi aspernatur illo! Dolorem, voluptates nam.</p>
-                            </div>
-                            <div class="content content-right">
-                                <img src="http://lorempixel.com/463/463/technics" alt="slider-1"/>
-                            </div>
-                        </div>',
-                        '<div class="sliders">
-                            <div class="content content-left">
-                                <h1>WECO Coin ICO</h1>
-                                <p>Aliquam vitae consectetur arcu, fringilla aliquet risus. Morbi et turpis dapibus, efficitur mi non, dapibus elit. Vivamus tempor sapien vel ullamcorper varius. Vivamus lobortis maximus velit. Pellentesque commodo felis aliquet magna lacinia, vitae consectetur turpis malesuada. Aliquam eu leo facilisis, tristique justo sed, aliquam nulla. Praesent venenatis bibendum ex, a convallis massa tempus eget. Nam euismod justo quis dolor tincidunt, ac suscipit sapien ultrices</p>
-                            </div>
-                            <div class="content content-right">
-                                <img src="http://lorempixel.com/463/463/people" alt="slider-2"/>
-                            </div>
-                        </div>',
-                        '<div class="sliders">
-                            <div class="content content-left">
-                                <h1>USDG Coin</h1>
-                                <p>Aliquam molestie magna ut est rutrum rhoncus. Quisque sagittis ligula a eros dapibus rhoncus vel a massa. Cras ante justo, hendrerit eget gravida sed, maximus ut odio. Proin id vestibulum felis. Nam eu lobortis lacus, venenatis accumsan est. Integer et hendrerit felis. Mauris lobortis mattis velit in condimentum. Donec sit amet ullamcorper turpis. Etiam diam quam, volutpat vel commodo hendrerit, pellentesque nec arcu.</p>
-                            </div>
-                            <div class="content content-right">
-                                <img src="http://lorempixel.com/463/463/city" alt="slider-3"/>
-                            </div>
-                        </div>'
-                    ],
+                    'items' => $items,
                     'controls' => [FAS::icon('caret-left'), FAS::icon('caret-right')],
                     'options' => [
                         'class' => 'slide'
                     ]
-                ]);
+                ]); 
+                // echo Carousel::widget([
+                //     'items' => [
+                //         // the item contains only the image
+                //         '<div class="sliders">
+                //             <div class="content content-left">
+                //                 <h1>USDG Coin</h1>
+                //                 <p>Aliquam molestie magna ut est rutrum rhoncus. Quisque sagittis ligula a eros dapibus rhoncus vel a massa. Cras ante justo, hendrerit eget gravida sed, maximus ut odio. Proin id vestibulum felis. Nam eu lobortis lacus, venenatis accumsan est. Integer et hendrerit felis. Mauris lobortis mattis velit in condimentum. Donec sit amet ullamcorper turpis. Etiam diam quam, volutpat vel commodo hendrerit, pellentesque nec arcu.</p>
+                //                 <a class="btn btn-link btn-transparent" href="#">Readmore ...</a>
+                //             </div>
+                //             <div class="content content-right">
+                //                 <img src="http://lorempixel.com/463/463/city" alt="slider-3"/>
+                //             </div>
+                //         </div>'
+                //     ],
+                //     'controls' => [FAS::icon('caret-left'), FAS::icon('caret-right')],
+                //     'options' => [
+                //         'class' => 'slide'
+                //     ]
+                // ]);
             ?>
         </div>
     </section>
@@ -111,10 +102,8 @@ $this->title = 'Home';
         </div>
     </section>
     <section class="container">
-        <h1 class="text-center heading-front">WHY Invest in WECO?</h1>
-        <p>WECO is a cryptocurrency banking platform. It disrupts the traditional bank model by enabling low-cost and instant fund transfers across the globe using our native offchain technology and WECO token (WXP). 1.5 billion people worldwide don’t have both financial literacy skills, and an access to banking services, but they would like to.</p>
-        <p>By purchasing WECO token (WXP) you invest in the future of global crypto and blockchain Education through WECO Crypto School. As a reward for contribution to World Education, WECO token (PXP) holders get the right to earn higher yields (15% annually) on a progressive scale on WECO Blockchain-based Bank with Checking and Savings Accounts. Furthermore, WECO token (WXP) holders are entitled to send instant payments within WECO products with lower commission as well as trade on WECO Crypto Exchange with reduced fees. Finally, WECO token (WXP) holders get an access to premium video tutorials with advanced trading strategies where we explain how to make money in the crypto market.</p>
-        <p>Just one account for all the products! Join to WECO! Join the Family of Banking and Learning!</p>
+        <h1 class="text-center heading-front"><?=$main->title?></h1>
+        <?=$main->content?>
     </section>
     <section class="container text-center">
         <h2 class="text-center capitalize">Our Partners</h2>
@@ -167,7 +156,7 @@ function initializeClock(id, endtime) {
   const timeinterval = setInterval(updateClock, 1000);
 }
 
-const deadline = new Date(Date.parse(new Date()) + 30 * 24 * 60 * 60 * 1000);
+const deadline = new Date(Date.parse(new Date()) + {$deadline} * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 JS;
 

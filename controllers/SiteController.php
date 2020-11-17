@@ -7,8 +7,13 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Posts;
 
 class SiteController extends Controller
 {
@@ -61,7 +66,38 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $pinPost = Posts::find()
+            ->important()
+            ->limit(4)
+            ->orderBy(['id' => SORT_DESC])
+            ->all();
+
+        foreach ($pinPost as $key => $post) {
+            $items[] = '
+                <div class="sliders"><div class="content content-left">
+                    <h1>'. $post->title .'</h1>
+                        <p>'.StringHelper::truncate($post->content, 250, '...').'</p> ' .
+                        Html::a('Readmore', ['/site/view-post', 'slug' => $post->slug], $options = ['class' => 'btn btn-link btn-transparent']).'
+                    </div>
+                    <div class="content content-right">
+                        <img src="'. Url::to(['/site/view-image', 'name' => $post->image]) . '" alt="slider-1"/>
+                    </div>
+                </div>
+            ';
+        }
+
+        $mainPost = Posts::find(['title', 'content'])
+            ->andWhere(['is_important' => 9])
+            ->orderBy(['id' => SORT_ASC])
+            ->one();
+
+        $deadline = 15;
+
+        return $this->render('index', [
+            'deadline' => $deadline,
+            'items' => $items,
+            'main' => $mainPost
+        ]);
     }
 
     /**
@@ -154,5 +190,37 @@ class SiteController extends Controller
     public function actionFeatures()
     {
         return $this->render('features');
+    }
+
+    public function actionViewPost($slug) 
+    {
+        $model = $this->findModel($slug);
+
+        return $this->render('view-post', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionViewImage($name)
+    {
+        $file = Yii::getAlias('@app/uploads/articles/' . $name, $throwException = true);
+
+        return Yii::$app->response->sendFile($file, NULL, ['inline' => true]);
+    }
+
+    /**
+     * Finds the Posts model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Posts the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($slug)
+    {
+        if (($model = Posts::findOne(['slug' => $slug])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

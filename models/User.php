@@ -116,6 +116,11 @@ class User extends BaseModel implements \yii\web\IdentityInterface
         ];
     }
 
+    public function getPosts()
+    {
+        return $this->hasMany(Posts::class, ['created_by' => 'id']);
+    }
+
     /**
      * @inheritdoc
      */
