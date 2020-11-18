@@ -98,7 +98,11 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getCategory()
     {
-        return Yii::$app->datastatic->getCategory($this->category_id);
+        if ($this->category_id != null) {
+            return Yii::$app->datastatic->getCategory($this->category_id);
+        }
+
+        return null;
     }
 
     /**

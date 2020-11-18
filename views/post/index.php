@@ -28,8 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'title',
+            [
+                'attribute' => 'category_id',
+                'value' => function ($data) {
+                    return $data->category;
+                },
+                'filter' => Html::activeDropDownList(
+                    $searchModel, 
+                    'category_id', 
+                    Yii::$app->datastatic->listCategory(), 
+                    $options = ['class' => 'form-control', 'prompt'=>'Select Category']
+                )
+            ],
             'is_important',
-            //'category_id',
             //'created_at',
             //'updated_at',
             //'created_by',

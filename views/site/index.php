@@ -2,6 +2,8 @@
 
 use rmrevin\yii\fontawesome\FAS;
 use yii\bootstrap\Carousel;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
@@ -17,40 +19,17 @@ $this->title = 'Home';
                     'options' => [
                         'class' => 'slide'
                     ]
-                ]); 
-                // echo Carousel::widget([
-                //     'items' => [
-                //         // the item contains only the image
-                //         '<div class="sliders">
-                //             <div class="content content-left">
-                //                 <h1>USDG Coin</h1>
-                //                 <p>Aliquam molestie magna ut est rutrum rhoncus. Quisque sagittis ligula a eros dapibus rhoncus vel a massa. Cras ante justo, hendrerit eget gravida sed, maximus ut odio. Proin id vestibulum felis. Nam eu lobortis lacus, venenatis accumsan est. Integer et hendrerit felis. Mauris lobortis mattis velit in condimentum. Donec sit amet ullamcorper turpis. Etiam diam quam, volutpat vel commodo hendrerit, pellentesque nec arcu.</p>
-                //                 <a class="btn btn-link btn-transparent" href="#">Readmore ...</a>
-                //             </div>
-                //             <div class="content content-right">
-                //                 <img src="http://lorempixel.com/463/463/city" alt="slider-3"/>
-                //             </div>
-                //         </div>'
-                //     ],
-                //     'controls' => [FAS::icon('caret-left'), FAS::icon('caret-right')],
-                //     'options' => [
-                //         'class' => 'slide'
-                //     ]
-                // ]);
+                ]);
             ?>
         </div>
     </section>
     <section class="container mt">
         <div class="grid-layout">
-            <div class="item-grid">
-                <a href="#" class="btn btn-link btn-paper"><?=FAS::icon('file-pdf')?> White Paper WECO</a>
-            </div>
-            <div class="item-grid">
-                <a href="#" class="btn btn-link btn-paper"><?=FAS::icon('file-pdf')?> White Paper USDG</a>
-            </div>
-            <div class="item-grid">
-                <a href="#" class="btn btn-link btn-paper"><?=FAS::icon('file-pdf')?> Ecosystem</a>
-            </div>
+            <?php foreach($wp as $key => $wp) { ?>
+                <div class="item-grid">
+                    <?=Html::a(FAS::icon('file-pdf') . ' ' . $wp->title, ['/site/view-post', 'slug' => $wp->slug], ['class' => 'btn btn-link btn-paper'])?>
+                </div>
+            <?php } ?>
         </div>
     </section>
     <section class="container mt">
@@ -107,57 +86,59 @@ $this->title = 'Home';
     </section>
     <section class="container text-center">
         <h2 class="text-center capitalize">Our Partners</h2>
-        <img class="partners" src="/images/bitcoin.svg" alt="Bitcoin" />
-        <img class="partners" src="/images/bitwyre.svg" alt="Bitwyre" />
-        <img class="partners" src="/images/ethereum.svg" alt="Ethereum" />
+        <?php foreach($partners as $key => $partner) { ?>
+            <?=Html::img(Url::to(['/site/view-image', 'name' => $partner->image]), ['class' => 'partners', 'alt' => $partner->title])?>
+        <?php } ?>
     </section>
 </div>
 
 <?php 
 
 $script = <<<JS
-function getTimeRemaining(endtime) {
-  const total = Date.parse(endtime) - Date.parse(new Date());
-  const seconds = Math.floor((total / 1000) % 60);
-  const minutes = Math.floor((total / 1000 / 60) % 60);
-  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-  const days = Math.floor(total / (1000 * 60 * 60 * 24));
-  
-  return {
-    total,
-    days,
-    hours,
-    minutes,
-    seconds
-  };
-}
-
-function initializeClock(id, endtime) {
-  const clock = document.getElementById(id);
-  const daysSpan = clock.querySelector('.days');
-  const hoursSpan = clock.querySelector('.hours');
-  const minutesSpan = clock.querySelector('.minutes');
-  const secondsSpan = clock.querySelector('.seconds');
-
-  function updateClock() {
-    const t = getTimeRemaining(endtime);
-
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
+    function getTimeRemaining(endtime) {
+        const total = Date.parse(endtime) - Date.parse(new Date());
+        const seconds = Math.floor((total / 1000) % 60);
+        const minutes = Math.floor((total / 1000 / 60) % 60);
+        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(total / (1000 * 60 * 60 * 24));
+        
+        return {
+            total,
+            days,
+            hours,
+            minutes,
+            seconds
+        };
     }
-  }
 
-  updateClock();
-  const timeinterval = setInterval(updateClock, 1000);
-}
+    function initializeClock(id, endtime) {
+        const clock = document.getElementById(id);
+        const daysSpan = clock.querySelector('.days');
+        const hoursSpan = clock.querySelector('.hours');
+        const minutesSpan = clock.querySelector('.minutes');
+        const secondsSpan = clock.querySelector('.seconds');
 
-const deadline = new Date(Date.parse(new Date()) + {$deadline} * 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);
+        function updateClock() {
+            const t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+
+        updateClock();
+        const timeinterval = setInterval(updateClock, 1000);
+    }
+
+    const end = new Date('11/18/2020 12:00 PM');
+    // const deadline = new Date(Date.parse(new Date()) + {$deadline} * 24 * 60 * 60 * 1000);
+    const deadline = end;
+    initializeClock('clockdiv', new Date('{$deadline}'));
 JS;
 
 $this->registerJs($script);

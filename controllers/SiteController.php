@@ -68,8 +68,20 @@ class SiteController extends Controller
     {
         $pinPost = Posts::find()
             ->important()
-            ->limit(4)
-            ->orderBy(['id' => SORT_DESC])
+            ->limit(3)
+            ->orderBy(['id' => SORT_ASC])
+            ->all();
+
+        $wp = Posts::find()
+            ->andWhere(['category_id' => 4])
+            ->limit(3)
+            ->orderBy(['id' => SORT_ASC])
+            ->all();
+
+        $partners = Posts::find()
+            ->select('id, title, slug, image')
+            ->partners()
+            ->limit(3)
             ->all();
 
         foreach ($pinPost as $key => $post) {
@@ -91,12 +103,14 @@ class SiteController extends Controller
             ->orderBy(['id' => SORT_ASC])
             ->one();
 
-        $deadline = 15;
+        $deadline = '12/31/2020 09:30 AM';
 
         return $this->render('index', [
             'deadline' => $deadline,
             'items' => $items,
-            'main' => $mainPost
+            'main' => $mainPost,
+            'wp' => $wp,
+            'partners' => $partners
         ]);
     }
 
@@ -201,10 +215,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionViewImage($name)
+    public function actionViewImage($name = null)
     {
         $file = Yii::getAlias('@app/uploads/articles/' . $name, $throwException = true);
 
+        if (!is_file($file) || $name == null) {
+            return Yii::$app->response->sendFile(Yii::getAlias('@app/web/images/dummy.svg', true), NULL, ['inline' => true]);
+        }
+        
         return Yii::$app->response->sendFile($file, NULL, ['inline' => true]);
     }
 

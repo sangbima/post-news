@@ -15,9 +15,9 @@ use rmrevin\yii\fontawesome\FAS;
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Products', 'url' => ['/site/products']],
-            ['label' => 'Partners', 'url' => ['/site/partners']],
-            ['label' => 'Features', 'url' => ['/site/features']],
+            ['label' => 'Products', 'url' => ['/products/index']],
+            ['label' => 'Partners', 'url' => ['/partners/index']],
+            ['label' => 'Features', 'url' => ['/features/index']],
             ['label' => 'Post', 'url' => ['/post'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 [

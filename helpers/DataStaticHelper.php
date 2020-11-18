@@ -13,6 +13,7 @@ class DataStaticHelper extends Component
         '4' => 'White Papers',
         '5' => 'Learn',
         '6' => 'Company',
+        '7' => 'FAQ',
     ]; 
     
     public function listCategory()
