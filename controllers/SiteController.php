@@ -83,20 +83,87 @@ class SiteController extends Controller
             ->partners()
             ->limit(3)
             ->all();
+        
+        // $items = [];
+        // foreach ($pinPost as $key => $post) {
+        //     $items[] = '
+        //         <div class="sliders"><div class="content content-left">
+        //             <h1>'. $post->title .'</h1>
+        //                 <p>'.StringHelper::truncate($post->content, 250, '...').'</p> ' .
+        //                 Html::a('Readmore', ['/site/view-post', 'slug' => $post->slug], $options = ['class' => 'btn btn-link btn-transparent']).'
+        //             </div>
+        //             <div class="content content-right">
+        //                 <img src="'. Url::to(['/site/view-image', 'name' => $post->image]) . '" alt="slider-1"/>
+        //             </div>
+        //         </div>
+        //     ';
+        // }
 
-        foreach ($pinPost as $key => $post) {
-            $items[] = '
-                <div class="sliders"><div class="content content-left">
-                    <h1>'. $post->title .'</h1>
-                        <p>'.StringHelper::truncate($post->content, 250, '...').'</p> ' .
-                        Html::a('Readmore', ['/site/view-post', 'slug' => $post->slug], $options = ['class' => 'btn btn-link btn-transparent']).'
-                    </div>
-                    <div class="content content-right">
-                        <img src="'. Url::to(['/site/view-image', 'name' => $post->image]) . '" alt="slider-1"/>
-                    </div>
+        $items = [
+            '<div class="sliders">
+                <div class="content content-left">
+                    <h1>E-CryptoLAB</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan massa nec lorem aliquet, sed convallis velit rutrum. Etiam porta, dolor quis mollis blandit, quam nisl lacinia eros, a congue mauris nibh in nibh. Suspendisse potenti. Aenea</p> ' .
+                    Html::a('Readmore', ['/site/view-post', 'slug' => 'e-cryptolab'], $options = ['class' => 'btn btn-link btn-transparent']).'
                 </div>
-            ';
-        }
+                <div class="content content-right">
+                    <img src="'. Url::to(['/site/view-image', 'name' => '1605609802crypto.svg']) . '" alt="slider-1"/>
+                </div>
+            </div>',
+            '<div class="sliders">
+                <div class="content content-left">
+                    <h1>WECO Coin ICO</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan massa nec lorem aliquet, sed convallis velit rutrum. Etiam porta, dolor quis mollis blandit, quam nisl lacinia eros, a congue mauris nibh in nibh. Suspendisse potenti. Aenea</p> ' .
+                    Html::a('Readmore', ['/site/view-post', 'slug' => 'weco-coin-ico'], $options = ['class' => 'btn btn-link btn-transparent']).'
+                </div>
+                <div class="content content-right">
+                    <table class="table table-rate">
+                        <tr>
+                            <th colspan="2"><i class="fas fa-chart-bar"></i> BUY RATE ICO WECO (2020-12-15)</th>
+                        </tr>
+                        <tr>
+                            <td>USDG</td>
+                            <td class="text-right">1</td>
+                        </tr>
+                    </table>
+                    <table class="table table-rate">
+                        <tr>
+                            <th colspan="2"><i class="fas fa-chart-bar"></i> BUY RATE ICO WECO (2021-01-15)</th>
+                        </tr>
+                        <tr>
+                            <td>USDG</td>
+                            <td class="text-right">1,2</td>
+                        </tr>
+                    </table>
+                    <div class="buy">' . Html::a('Buy', ['#'], ['class' => 'btn btn-link btn-paper']) . '</div>
+                </div>
+            </div>',
+            '<div class="sliders">
+                <div class="content content-left">
+                    <h1>USDG Coin</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan massa nec lorem aliquet, sed convallis velit rutrum. Etiam porta, dolor quis mollis blandit, quam nisl lacinia eros, a congue mauris nibh in nibh. Suspendisse potenti. Aenea</p> ' .
+                    Html::a('Readmore', ['/site/view-post', 'slug' => 'usdg-coin'], $options = ['class' => 'btn btn-link btn-transparent']).'
+                </div>
+                <div class="content content-right">
+                    <table class="table table-rate">
+                        <tr>
+                            <th colspan="3"><i class="fas fa-chart-bar"></i> BUY RATE USDG (2021-01-15)</th>
+                        </tr>
+                        <tr>
+                            <td><img style="width: 15px" src="/images/bitcoin.svg"/></td>
+                            <td>Bitcoin</td>
+                            <td class="text-right">0,000090910</td>
+                        </tr>
+                        <tr>
+                            <td><img style="width: 15px" src="/images/ethereum.svg"/></td>
+                            <td>Ethereum</td>
+                            <td class="text-right">0,003155</td>
+                        </tr>
+                    </table>
+                    <div class="buy">' . Html::a('Buy', ['#'], ['class' => 'btn btn-link btn-paper']) . '</div>
+                </div>
+            </div>'
+        ];
 
         $mainPost = Posts::find(['title', 'content'])
             ->andWhere(['is_important' => 9])

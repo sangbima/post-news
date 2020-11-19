@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel-heading">
                     <h1><?= Html::encode($this->title) ?></h1> <small>Please fill out the following fields to login:</small>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="panel-login">
                     <?php $form = ActiveForm::begin([
                         'id' => 'login-form'
                     ]); ?>
