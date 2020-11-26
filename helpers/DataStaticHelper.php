@@ -15,6 +15,22 @@ class DataStaticHelper extends Component
         '6' => 'Company',
         '7' => 'FAQ',
     ]; 
+
+    private $stage = [
+        '1' => 'Stage 1',
+        '2' => 'Stage 2',
+        '3' => 'Stage 3',
+        '4' => 'Stage 4',
+        '5' => 'Stage 5',
+    ];
+
+    private $country = [
+        '1' => 'Indonesia',
+        '2' => 'Singapore',
+        '3' => 'USA',
+        '4' => 'DUBAI/UNI EMIRAT ARAB',
+        '5' => 'Hongkong',
+    ];
     
     public function listCategory()
     {
@@ -24,5 +40,25 @@ class DataStaticHelper extends Component
     public function getCategory($id)
     {
         return $this->category[$id];
+    }
+
+    public function listStage()
+    {
+        return $this->stage;
+    }
+
+    public function getState($id)
+    {
+        return $this->stage[$id];
+    }
+
+    public function listCountry()
+    {
+        return $this->country;
+    }
+
+    public function getCountry($id)
+    {
+        return $this->country[$id];
     }
 }

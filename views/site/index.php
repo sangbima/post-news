@@ -4,6 +4,7 @@ use rmrevin\yii\fontawesome\FAS;
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 
@@ -80,9 +81,126 @@ $this->title = 'Home';
             </div>
         </div>
     </section>
+    <section class="container text-center mt-2">
+        <h2 class="text-center capitalize mt-2 mb-3">Advisors</h2>
+        <div class="advisors">
+            <div class="advisor-item">
+                <?=Html::img('https://placeimg.com/160/160/people/grayscale', ['class' => 'img-circle advisor-img', 'alt' => 'Advisors'])?>
+                <h3>Jason Huang</h3>
+                <div class="advisor-title">
+                    TOKEN SALE ADVISOR
+                </div>
+            </div>
+            <div class="advisor-item">
+                <?=Html::img('https://placeimg.com/160/160/people/grayscale', ['class' => 'img-circle advisor-img', 'alt' => 'Advisors'])?>
+                <h3>Hamza Khan</h3>
+                <div class="advisor-title">
+                    TOKEN SALE ADVISOR
+                </div>
+            </div>
+            <div class="advisor-item">
+                <?=Html::img('https://placeimg.com/160/160/people/grayscale', ['class' => 'img-circle advisor-img', 'alt' => 'Advisors'])?>
+                <h3>Michael Brooks</h3>
+                <div class="advisor-title">
+                    TOKEN SALE ADVISOR
+                </div>
+            </div>
+            <div class="advisor-item">
+                <?=Html::img('https://placeimg.com/160/160/people/grayscale', ['class' => 'img-circle advisor-img', 'alt' => 'Advisors'])?>
+                <h3>Naveen Kapoor</h3>
+                <div class="advisor-title">
+                    TOKEN SALE ADVISOR
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="container">
         <h1 class="text-center heading-front"><?=$main->title?></h1>
         <?=$main->content?>
+    </section>
+    <section class="container text-center">
+        <h2 class="text-center capitalize">Stage 1 -  ICO  1  WeCo USDG 1,-/coin 250.000 coin <span class="label label-primary">SOLD OUT</span></h2>
+        <h3 class="text-left">Indonesia</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageOneIndonesia,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
+        <h3 class="text-left">Singapore</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageOneSingapore,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
+        <h3 class="text-left">USA</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageOneUsa,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
+        <h3 class="text-left">DUBAI/Uni Emirat Arab</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageOneUea,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
+        <h3 class="text-left">Hongkong</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageOneHongkong,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
+    </section>
+    <section class="container text-center">
+        <h2 class="text-center capitalize">Stage 2 -  ICO  2  WeCo USDG 1,25/coin 500.000 coin</h2>
+        <h3 class="text-left">Indonesia</h3>
+        <?= GridView::widget([
+            'dataProvider' => $stageTwoIndonesia,
+            'summary' => '',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'name',
+                'address',
+                'id_member',
+                'coin',
+                'buy_date'
+            ],
+        ]); ?>
     </section>
     <section class="container text-center">
         <h2 class="text-center capitalize">Our Partners</h2>

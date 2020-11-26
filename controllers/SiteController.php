@@ -14,6 +14,8 @@ use yii\web\NotFoundHttpException;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Posts;
+use app\models\Wallet;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -172,12 +174,64 @@ class SiteController extends Controller
 
         $deadline = '12/31/2020 09:30 AM';
 
+        $queryStageOneIndonesia = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage1()
+            ->indonesia();
+        $queryStageOneSingapore = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage1()
+            ->singapore();
+        $queryStageOneUsa = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage1()
+            ->usa();
+        $queryStageOneUea = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage1()
+            ->uea();
+        $queryStageOneHongkong = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage1()
+            ->hongkong();
+
+        $queryStageTwoIndonesia = Wallet::find()
+            ->select(['name', 'address', 'id_member', 'coin', 'buy_date'])
+            ->stage2()
+            ->indonesia();
+
+        $dataProviderStageOneIndonesia = new ActiveDataProvider([
+            'query' => $queryStageOneIndonesia,
+        ]);
+        $dataProviderStageOneSingapore = new ActiveDataProvider([
+            'query' => $queryStageOneSingapore,
+        ]);
+        $dataProviderStageOneUsa = new ActiveDataProvider([
+            'query' => $queryStageOneUsa,
+        ]);
+        $dataProviderStageOneUea = new ActiveDataProvider([
+            'query' => $queryStageOneUea,
+        ]);
+        $dataProviderStageOneHongkong = new ActiveDataProvider([
+            'query' => $queryStageOneHongkong,
+        ]);
+
+        $dataProviderStageTwoIndonesia = new ActiveDataProvider([
+            'query' => $queryStageTwoIndonesia,
+        ]);
+
         return $this->render('index', [
             'deadline' => $deadline,
             'items' => $items,
             'main' => $mainPost,
             'wp' => $wp,
-            'partners' => $partners
+            'partners' => $partners,
+            'stageOneIndonesia' => $dataProviderStageOneIndonesia,
+            'stageOneSingapore' => $dataProviderStageOneSingapore,
+            'stageOneUsa' => $dataProviderStageOneUsa,
+            'stageOneUea' => $dataProviderStageOneUea,
+            'stageOneHongkong' => $dataProviderStageOneHongkong,
+            'stageTwoIndonesia' => $dataProviderStageTwoIndonesia,
         ]);
     }
 

@@ -19,11 +19,12 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "rmrevin/yii2-fontawesome": "~3.5",
-        "fortawesome/font-awesome": "9999999-dev",
         "2amigos/yii2-ckeditor-widget": "^2.2",
         "yii2mod/yii2-sweet-alert": "*",
         "fortawesome/font-awesome": "*",
-        "tecnickcom/tcpdf": "~6.3.5"
+        "tecnickcom/tcpdf": "~6.3.5",
+        "bitwasp/bitcoin": "9999999-dev",
+        "kartik-v/yii2-widgets": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
