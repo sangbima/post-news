@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Advisors;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -200,6 +201,10 @@ class SiteController extends Controller
             ->stage2()
             ->indonesia();
 
+        $advisors = Advisors::find()
+            ->select(['img', 'name', 'title'])
+            ->all();
+
         $dataProviderStageOneIndonesia = new ActiveDataProvider([
             'query' => $queryStageOneIndonesia,
         ]);
@@ -232,6 +237,7 @@ class SiteController extends Controller
             'stageOneUea' => $dataProviderStageOneUea,
             'stageOneHongkong' => $dataProviderStageOneHongkong,
             'stageTwoIndonesia' => $dataProviderStageTwoIndonesia,
+            'advisors' => $advisors
         ]);
     }
 
@@ -336,9 +342,10 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionViewImage($name = null)
+    public function actionViewImage($name = null, $type = null)
     {
-        $file = Yii::getAlias('@app/uploads/articles/' . $name, $throwException = true);
+        $type = !is_null($type) ? $type . '/' : 'articles/';
+        $file = Yii::getAlias('@app/uploads/' . $type . $name, $throwException = true);
 
         if (!is_file($file) || $name == null) {
             return Yii::$app->response->sendFile(Yii::getAlias('@app/web/images/dummy.svg', true), NULL, ['inline' => true]);

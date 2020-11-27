@@ -19,6 +19,8 @@ use rmrevin\yii\fontawesome\FAS;
             ['label' => 'Partners', 'url' => ['/partners/index']],
             ['label' => 'Features', 'url' => ['/features/index']],
             ['label' => 'Post', 'url' => ['/post'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Wallet', 'url' => ['/wallet'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Advisor', 'url' => ['/advisors'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 [
                     'label' => 'Sign In ' . FAS::icon('arrow-right'),

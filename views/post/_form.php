@@ -41,7 +41,7 @@ use dosamigos\ckeditor\CKEditor;
     </div>
     <div class="row">
         <div class="col-md-6">
-        <?= $form->field($model, 'image')->fileInput() ?>
+            <?= $form->field($model, 'image')->fileInput() ?>
         </div>
     </div>
     <div class="form-group">
