@@ -98,7 +98,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
@@ -111,7 +116,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
@@ -124,7 +134,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
@@ -137,7 +152,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
@@ -150,7 +170,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
@@ -170,7 +195,12 @@ $this->title = 'Home';
                         'name',
                         'address',
                         'id_member',
-                        'coin',
+                        [
+                            'attribute' => 'coin',
+                            'value' => function($d) {
+                                return Yii::$app->formatter->asDecimal($d->coin, 2);
+                            }
+                        ],
                         'buy_date'
                     ],
                 ]); ?>
