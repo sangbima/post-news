@@ -131,7 +131,7 @@ class SiteController extends Controller
                     </table>
                     <table class="table table-rate">
                         <tr>
-                            <th colspan="2"><i class="fas fa-chart-bar"></i> BUY RATE ICO WECO (2021-01-15)</th>
+                            <th colspan="2"><i class="fas fa-chart-bar"></i> BUY RATE ICO IDRG (2021-01-15)</th>
                         </tr>
                         <tr>
                             <td>USDG</td>
