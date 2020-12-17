@@ -90,7 +90,7 @@ class SiteController extends Controller
         
         $items = [];
         foreach ($pinPost as $key => $post) {
-            if ($post->display_image == true) {
+            if ($post->display_image == true || $post->rate_id == null) {
                 $contentRight = '<img src="'. Url::to(['/site/view-image', 'name' => $post->image]) . '" alt="slider-1"/>';
             } else {
                 $tableRate = '';
