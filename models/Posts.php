@@ -17,6 +17,8 @@ use yii\behaviors\BlameableBehavior;
  * @property string|null $image
  * @property int|null $is_important
  * @property int|null $type
+ * @property string|null $rate_id
+ * @property boolean|null $display_image
  * @property int|null $category_id
  * @property int|null $created_at
  * @property int|null $updated_at
@@ -59,8 +61,9 @@ class Posts extends \yii\db\ActiveRecord
         return [
             [['title', 'slug', 'content', 'type'], 'required'],
             [['content'], 'string'],
-            [['is_important', 'type', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['is_important', 'display_image', 'type', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['title', 'slug'], 'string', 'max' => 100],
+            [['rate_id'], 'safe'],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, svg'],
         ];
     }
@@ -78,6 +81,8 @@ class Posts extends \yii\db\ActiveRecord
             'image' => 'Image',
             'is_important' => 'Is Important',
             'type' => 'Type',
+            'rate_id' => 'Rate ID',
+            'display_image' => 'Display Image',
             'category_id' => 'Category',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -103,6 +108,11 @@ class Posts extends \yii\db\ActiveRecord
         }
 
         return null;
+    }
+
+    public function getKurs($id)
+    {
+        return ExchangeRate::findOne($id);
     }
 
     /**

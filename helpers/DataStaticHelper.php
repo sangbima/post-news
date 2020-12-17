@@ -14,6 +14,7 @@ class DataStaticHelper extends Component
         '5' => 'Learn',
         '6' => 'Company',
         '7' => 'FAQ',
+        '8' => 'CEO Speaking',
     ]; 
 
     private $stage = [
@@ -30,6 +31,14 @@ class DataStaticHelper extends Component
         '3' => 'USA',
         '4' => 'DUBAI/UNI EMIRAT ARAB',
         '5' => 'Hongkong',
+    ];
+
+    private $currency = [
+        'WECO' => 'WECO',
+        'IDRG' => 'IDRG',
+        'USDG' => 'USDG',
+        'Bitcoin' => 'Bitcoin',
+        'Ethereum' => 'Ethereum'
     ];
     
     public function listCategory()
@@ -60,5 +69,15 @@ class DataStaticHelper extends Component
     public function getCountry($id)
     {
         return $this->country[$id];
+    }
+
+    public function listCurrencys()
+    {
+        return $this->currency;
+    }
+
+    public function getCurrency($id)
+    {
+        return $this->currency[$id];
     }
 }

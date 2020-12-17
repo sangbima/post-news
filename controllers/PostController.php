@@ -82,6 +82,7 @@ class PostController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->image = UploadedFile::getInstance($model, 'image');
+            $model->rate_id = empty($model->rate_id) ? null : implode(',', $model->rate_id);
 
             if ($model->validate()) {
                 if(!is_null($model->image)) {
@@ -124,6 +125,7 @@ class PostController extends Controller
         $file = $model->image;
         if ($model->load(Yii::$app->request->post())) {
             $image = UploadedFile::getInstance($model, 'image');
+            $model->rate_id = empty($model->rate_id) ? null : implode(',', $model->rate_id);
 
             if ($model->validate()) {
                 if(!is_null($image)) {
@@ -150,6 +152,7 @@ class PostController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $model->rate_id = explode(',', $model->rate_id);
         return $this->render('update', [
             'model' => $model,
         ]);

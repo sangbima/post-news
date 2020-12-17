@@ -37,14 +37,16 @@ class PostsQuery extends \yii\db\ActiveQuery
         return $this->andWhere(['is_important' => 10]);
     }
 
-    public function faq()
-    {
-        return $this->andWhere(['category_id' => 7]);
-    }
+    
 
     public function products()
     {
         return $this->andWhere(['category_id' => 1]);
+    }
+
+    public function partners()
+    {
+        return $this->andWhere(['category_id' => 2]);
     }
 
     public function features()
@@ -52,8 +54,28 @@ class PostsQuery extends \yii\db\ActiveQuery
         return $this->andWhere(['category_id' => 3]);
     }
 
-    public function partners()
+    public function wp()
     {
-        return $this->andWhere(['category_id' => 2]);
+        return $this->andWhere(['category_id' => 4]);
+    }
+
+    public function learns()
+    {
+        return $this->andWhere(['category_id' => 5]);
+    }
+
+    public function companies()
+    {
+        return $this->andWhere(['category_id' => 6]);
+    }
+
+    public function faq()
+    {
+        return $this->andWhere(['category_id' => 7]);
+    }
+
+    public function ceo()
+    {
+        return $this->andWhere(['category_id' => 8]);
     }
 }
