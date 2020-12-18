@@ -77,9 +77,9 @@ use yii\helpers\Url;
                                     }
                                 } else {
                             ?>
-                            <li><?=Html::a('Article And Blog', ['#'], $options = [])?></li>
-                            <li><?=Html::a('FAQ', ['#'], $options = [])?></li>
-                            <li><?=Html::a('Academi', ['#'], $options = [])?></li>
+                            <li><?=Html::a('Article And Blog', ['/blog'], $options = [])?></li>
+                            <li><?=Html::a('FAQ', ['/faq'], $options = [])?></li>
+                            <li><?=Html::a('Academi', ['/academi'], $options = [])?></li>
                             <?php }?>
                         </ol>
                     </li>
@@ -89,19 +89,8 @@ use yii\helpers\Url;
                 <ul>
                     <li>COMPANY
                         <ol>
-                            <?php 
-                                $companies = \app\models\Posts::find()->companies()->limit(3)->all();
-                                if($companies) {
-                                    foreach($companies as $key => $company) {
-                                        ?>
-                                        <li><?=Html::a($company->title, ['/site/view-post', 'slug' => $company->slug], $options = [])?></li>
-                                        <?php
-                                    }
-                                } else {
-                            ?>
-                            <li><?=Html::a('Team', ['#'], $options = [])?></li>
-                            <li><?=Html::a('Privacy', ['#'], $options = [])?></li>
-                            <?php }?>
+                            <li><?=Html::a('Team', ['/team'], $options = [])?></li>
+                            <li><?=Html::a('Privacy', ['/privacy'], $options = [])?></li>
                         </ol>
                     </li>
                 </ul>

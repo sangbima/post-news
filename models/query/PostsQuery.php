@@ -37,8 +37,6 @@ class PostsQuery extends \yii\db\ActiveQuery
         return $this->andWhere(['is_important' => 10]);
     }
 
-    
-
     public function products()
     {
         return $this->andWhere(['category_id' => 1]);
@@ -77,5 +75,15 @@ class PostsQuery extends \yii\db\ActiveQuery
     public function ceo()
     {
         return $this->andWhere(['category_id' => 8]);
+    }
+
+    public function privacy()
+    {
+        return $this->andWhere(['category_id' => 9]);
+    }
+
+    public function articles()
+    {
+        return $this->andWhere(['category_id' => 10]);
     }
 }

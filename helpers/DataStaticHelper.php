@@ -15,6 +15,8 @@ class DataStaticHelper extends Component
         '6' => 'Company',
         '7' => 'FAQ',
         '8' => 'CEO Speaking',
+        '9' => 'Privacy',
+        '10' => 'Article & Blog'
     ]; 
 
     private $stage = [

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ListView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\SearchPosts */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -9,10 +10,10 @@ $this->title = 'Blogs & Articles';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blog-article-index container">
-    <h1>blog/index</h1>
+    <h1>Article/Blog</h1>
 
-    <p>
-        You may change the content of this page by modifying
-        the file <code><?= __FILE__; ?></code>.
-    </p>
+    <?=ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemView' => '_post',
+    ]);?>
 </div>
